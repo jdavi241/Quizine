@@ -8,10 +8,52 @@
     <title>Quizine</title>
 </head>
 <body>
+
     <div class="container is-mobile has-text-centered">
         <div class="box">
             <h1 class="title is-1">Quizine</h1>
             <h2 class="subtitle">Finding a meal, made easy.</h2>
+
+
+            <nav class="navbar has" role="navigation" aria-label="main navigation">
+                
+                <div class="navbar-brand">
+              
+                  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                  </a>
+                </div>
+              
+                <div id="navbarBasicExample" class="navbar-menu">
+                  <div class="navbar-start">
+                    <a class="navbar-item" href="#">
+                      Home
+                    </a>
+              
+                    <a class="navbar-item" href="https://github.com/jdavi241/Quizine/blob/main/README.md">
+                      ReadMe
+                    </a>
+              
+                    <div class="navbar-item has-dropdown is-hoverable">
+                      <a class="navbar-link">
+                        More
+                      </a>
+              
+                      <div class="navbar-dropdown">
+                        <a class="navbar-item" href="#About">
+                          About
+                        </a>
+                        <a class="navbar-item" href="#footer">
+                          Contributors
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+              
+                  
+              </nav>
         </div>
     
         <div class="block is-resposive">
@@ -19,7 +61,38 @@
             <h1 class="subtitle">Click here to start the quiz!</h1>
     </div>
     </div>
+
+    <div class="container is-mobile has-text-centered">
+        <div class="quizbox">
+                <div class="option-list">
+                    <div class="option">
+                        <span></span>
+                    </div>
+               <div class="option-list">
+                    <div class="option">
+                        <span></span>
+                    </div>  
+               <div class="option-list">
+                 <div class="option">
+                        <span></span>
+                    </div>
+               <div class="option-list">
+                 <div class="option">
+                        <span></span>
+                    </div>     
+                </div>
+    </div>
+
+
+    <section id="About">
+        <div class="section">
+            <p>We all find it very difficult at times to decide on what to eat.</p>
+            <p>That is why we have made this awesome quiz to make things a little easier!</p>
+        </div>    
+    </section>
     
+
+    <section id="footer">
     <footer class="footer has-text-centered">
         <div class="content">
             <h1 class="title is-3">Contributors</h1>
@@ -30,8 +103,8 @@
 
         </div>
     </footer>
+    </section>
 
-    <script src="./assets/questions.js"></script>
     <script src="./assets/script.js"></script>
 </body>
 </html>
