@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Quizine</title>
-</head>
-<body>
-
+  </head>
+  <body>
+    
     <div class="container is-mobile has-text-centered">
-        <div class="box">
-            <h1 class="title is-1">Quizine</h1>
-            <h2 class="subtitle">Finding a meal, made easy.</h2>
+      <div class="box">
+          <h1 class="title is-1">Quizine</h1>
+          <h2 class="subtitle">Finding a meal, made easy.</h2>
 
-
-            <nav class="navbar is-resposive is-hoverable has-dropdown is-active" role="navigation" aria-label="main navigation">
-                
-                <div class="navbar-brand">
+          <!-- Navigation -->
+          <nav class="navbar is-resposive is-hoverable has-dropdown is-active" role="navigation" aria-label="main navigation">
               
-                  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
+              <div class="navbar-brand">
+            
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarBasicExample is-resposive has-dropdown is-hoverable" class="navbar-menu is-resposive has-dropdown">
+                <div class="navbar-start has-dropdown">
+                  <a class="navbar-item" href="#">
+                    Home
                   </a>
-                </div>
-              
-                <div id="navbarBasicExample is-resposive has-dropdown is-hoverable" class="navbar-menu is-resposive has-dropdown">
-                  <div class="navbar-start has-dropdown">
-                    <a class="navbar-item" href="#">
-                      Home
+            
+                  <a class="navbar-item" href="https://github.com/jdavi241/Quizine/blob/main/README.md">
+                    ReadMe
+                  </a>
+            
+                  <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                      More
                     </a>
-              
-                    <a class="navbar-item" href="https://github.com/jdavi241/Quizine/blob/main/README.md">
-                      ReadMe
-                    </a>
-              
-                    <div class="navbar-item has-dropdown is-hoverable">
-                      <a class="navbar-link">
-                        More
+            
+                    <div class="navbar-dropdown">
+                      <a class="navbar-item" href="#About">
+                        About
                       </a>
-              
-                      <div class="navbar-dropdown">
-                        <a class="navbar-item" href="#About">
-                          About
-                        </a>
-                        <a class="navbar-item" href="#footer">
-                          Contributors
-                        </a>
-                      </div>
+                      <a class="navbar-item" href="#footer">
+                        Contributors
+                      </a>
                     </div>
                   </div>
-              
-                  
-              </nav>
-        </div>
+                </div>
+              </div>
+          </nav>
+      </div>
         <div class="startMenu">
             <div class="block is-resposive">
               <button id="startBtn" class="button is-primary is-medium">Start Quiz</button>
@@ -107,5 +106,5 @@
  
 
     <script src="./Assets/js/script.js"></script>
-</body>
+  </body>
 </html>
