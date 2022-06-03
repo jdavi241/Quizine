@@ -26,19 +26,34 @@ function getQuestion() {
   var questionEl = document.querySelector(".que_text");
   var answerOneEl = document.querySelector("#one");
   var answerTwoEl = document.querySelector("#two");
-  answerOneEl.addEventListener("click", answerClick);
-  answerTwoEl.addEventListener("click", answerClick);
+  var answerCon = document.querySelector("#answerCon")
+  var questionsCon = document.querySelector("#questionsCon")
+  // answerOneEl.addEventListener("click", answerClick);
+  // answerTwoEl.addEventListener("click", answerClick);
 
   // Hide start menu
   startMenu.style.display = "none";
   // Display questions
   questionCon.style.display = "block";
 
-  // Go to question array and insert "question:"
-  questionEl.innerText = question[i].question;
+  for (let l = 0; l < question[i].answers.length; l++) {
+    var options = question[i].answers[l];
+    var questionsConEl = question[i].question
+    //console.log(options)
+    var btn = document.createElement("button")
+    btn.innerHTML = options
+    btn.addEventListener("click", answerClick)
+    console.log(answerCon)
+    answerCon.appendChild(btn)
+    questionsCon.innerHTML = questionsConEl
+    
+  }
 
-  answerOneEl.innerText = question[i].answers[0];
-  answerTwoEl.innerText = question[i].answers[1];
+  // Go to question array and insert "question:"
+  // questionEl.innerText = question[i].question;
+
+  // answerOneEl.innerText = question[i].answers[0];
+  // answerTwoEl.innerText = question[i].answers[1];
 };
 
 // Hide question content on home page
@@ -55,6 +70,7 @@ function answerClick() {
   // iterate through each question on click 
   i++
 
+  answerCon.innerHTML = ""
   // Grab next question
   getQuestion();
 
