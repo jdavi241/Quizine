@@ -62,7 +62,6 @@ questionCon.style.display = "none";
 var answerOpt = []
 
 function answerClick() {
-  //var questionCon = document.querySelector("#questionDsp");
 
   // insert html into empty array 
   answerOpt.push(this.innerText)
@@ -77,3 +76,25 @@ function answerClick() {
   console.log(answerOpt);
   //console.log(this.innerText);
 }
+
+var getResults = function() {
+  
+}
+
+function getAPIs () {
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
+      'X-RapidAPI-Key': 'fa86238f57msh6dd363b9818db11p18e049jsn90f1e1c91380'
+    }
+  };
+  // localStorage.setItem(".value", JSON.stringify())
+  var food = ""
+  fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=10&tags=under_30_minutes&q=${food}`, options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+}
+
+getAPIs();
