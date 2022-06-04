@@ -36,9 +36,9 @@ function getQuestion() {
   // Display questions
   questionCon.style.display = "block";
 
-  for (let l = 0; l < question[i].answers.length; l++) {
-    var options = question[i].answers[l];
-    var questionsConEl = question[i].question
+  for (let l = 0; l < question[l].answers.length; l++) {
+    var options = question[l].answers[l];
+    var questionsConEl = question[l].question
     //console.log(options)
     var btn = document.createElement("button")
     btn.innerHTML = options
@@ -89,7 +89,20 @@ function getAPIs () {
       'X-RapidAPI-Key': 'fa86238f57msh6dd363b9818db11p18e049jsn90f1e1c91380'
     }
   };
-  // localStorage.setItem(".value", JSON.stringify())
+
+  window.localStorage.setItem('chicken', JSON.stringify(question))
+  window.localStorage.setItem('salad', JSON.stringify(question))
+  window.localStorage.setItem('tacos', JSON.stringify(question))
+  window.localStorage.setItem('soup', JSON.stringify(question))
+  window.localStorage.setItem('pizza', JSON.stringify(question))
+  window.localStorage.setItem('burgers', JSON.stringify(question))
+  window.localStorage.setItem('in', JSON.stringify(question))
+  window.localStorage.setItem('out', JSON.stringify(question))
+
+
+
+
+
   var food = ""
   fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=10&tags=under_30_minutes&q=${food}`, options)
     .then(response => response.json())
