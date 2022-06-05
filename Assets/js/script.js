@@ -33,8 +33,6 @@ function getQuestion() {
   var answerTwoEl = document.querySelector("#two");
   var answerCon = document.querySelector("#answerCon")
   var questionsCon = document.querySelector("#questionsCon")
-  // answerOneEl.addEventListener("click", answerClick);
-  // answerTwoEl.addEventListener("click", answerClick);
 
   // Hide start menu
   startMenu.style.display = "none";
@@ -46,10 +44,7 @@ function getQuestion() {
   for (let l = 0; l < question[i].answers.length; l++) {
     var options = question[i].answers[l];
     var questionsConEl = question[i].question
-    //console.log(options)
     var btn = document.createElement("button")
-    // btn.data = question[i];
-    // console.log(btn.data)
     btn.classList = "button is-primary is-medium is-light"
     btn.innerHTML = options
     btn.addEventListener("click", answerClick)
@@ -58,13 +53,6 @@ function getQuestion() {
     
     
   }
-  
-  //getResults();
-  // Go to question array and insert "question:"
-  // questionEl.innerText = question[i].question;
-
-  // answerOneEl.innerText = question[i].answers[0];
-  // answerTwoEl.innerText = question[i].answers[1];
 };
 
 // Hide question content on home page
@@ -97,22 +85,24 @@ function answerClick() {
 function getAPIs (answer) {
   questionCon.style.display = "none"
   if (answer.includes("out")) {
-    console.log('works')
+    console.log("worked homie")
+    // var searchFood = answerOpt[3] + " restaurants near me"
+    
     // const optionsTwo = {
-    //   method: 'POST',
+    //   method: 'GET',
     //   headers: {
-    //     'content-type': 'application/json',
-    //     'X-RapidAPI-Host': 'google-maps-search1.p.rapidapi.com',
+    //     'X-RapidAPI-Host': 'google-search1.p.rapidapi.com',
     //     'X-RapidAPI-Key': 'fa86238f57msh6dd363b9818db11p18e049jsn90f1e1c91380'
-    //   },
-    //   body: '{"limit":3,"language":"en","region":"us","queries":["Lawyers near San Francisco, CA, US","Lawyers near New York, NY, US","Graphic Designers in Chicago"],"coordinates":"37.381315,-122.046148"}'
+    //   }
     // };
     
-    // fetch('https://google-maps-search1.p.rapidapi.com/search', optionsTwo)
+    // fetch(`https://google-search1.p.rapidapi.com/google-search?hl=${searchFood}`, optionsTwo)
     //   .then(response => response.json())
-    //   .then(response => console.log(response))
+    //   .then(response => showResults(response))
     //   .catch(err => console.error(err));
-  } else if (answer.includes("Beef", "Pork", "Chicken", "Fish", "Veggies")) {  
+      
+    
+  } else if (answer.includes("Pork") || answer.includes("Fish") || answer.includes("Beef") || answer.includes("Chicken") || answer.includes("Veggies") || !answer.includes("out")) {  
 
     const options = {
       method: 'GET',
@@ -121,7 +111,7 @@ function getAPIs (answer) {
         'X-RapidAPI-Key': 'fa86238f57msh6dd363b9818db11p18e049jsn90f1e1c91380'
       }
     };
-    // localStorage.setItem(".value", JSON.stringify())
+    
     var food = answerOpt[3]
     console.log(food)
     fetch(`https://tasty.p.rapidapi.com/recipes/list?from=0&size=10&tags=under_30_minutes&q=${food}`, options)
@@ -129,30 +119,63 @@ function getAPIs (answer) {
       .then(response => showResults(response))
       .catch(err => console.error(err));
 
+    
+  }  
   
-  }    
-
-
-  //show results 
 
 }
 
 function showResults(data) {
   console.log(data)
   var resultsText = document.querySelector("#results")
-  console.log(resultsText)
+  //console.log(resultsText)
   var recipeDescription = document.querySelector("#description")
+  // Display results HTML
   resultsText.style.display = "block"
-  recipeDescription.innerText = data.description 
-  
-  // Choose number of options.  Create Loop, dynamically create options (similar to buttons) in loop, 
 
-  for (let i = 0; i < data.results.length; i++) {
-    // document.createElement("h2") (header)
-    
-    // loop through instructions.  Create list item for each instruction index (ul)
+  // Create elements 
+  var heading = document.createElement("p")
+  heading.innerText = data.results[0].name
+  resultsText.appendChild(heading)
 
-    // create loop to display each instruction (use different variable)
+  var header = document.createElement("p")
+  header.innerText = data.results[0].description
+  resultsText.appendChild(header)
+
+  var recipeImg = document.createElement("img")
+  recipeImg.src = data.results[0].thumbnail_url
+  recipeImg.classList = "image is-square"
+  resultsText.appendChild(recipeImg)
+
+  // var instructionsDiv = document.createElement("ul")
+  // var instructionsItems = document.createElement("li")
+  //instructionsItems.innerText = data.results[0].instructions[0].display_text
+  // instructionsDiv.appendChild(instructionsItems)
+  // resultsText.appendChild(instructionsDiv)
+
+  for (let a = 0; a < data.results[0].instructions.length; a++) {
+    const instructionsItems = data.results[0].instructions[a].display_text;
+    // console.log(instructionsItems)
+    var instructionsDiv = document.createElement("ol")
+    var instructionsContent = document.createElement("li")
+    instructionsContent.classList = "is-mobile"
+    instructionsItems.classList = "is-3"
+    instructionsContent.innerText = instructionsItems
+    instructionsDiv.appendChild(instructionsContent)
+    resultsText.appendChild(instructionsDiv)
   }
+  
+  // Store Data 
+  //storeData();
 }
+
+// var storeData = function () {
+//   var resultsData = answerOpt.value 
+//   //console.log(resultsData)
+
+//   //localStorage.setItem('results', JSON.stringify(resultsData))
+
+//   //localStorage.getItem('results')
+   
+// }
 
