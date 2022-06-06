@@ -2,6 +2,7 @@ var startQuiz = document.querySelector("#startBtn");
 startQuiz.addEventListener("click", getQuestion);
 var questionCon = document.querySelector("#questionDsp");
 var startMenu = document.querySelector(".startMenu");
+var displayText = document.querySelector("#dataResults")
 
 
 var question = [{
@@ -39,6 +40,7 @@ function getQuestion() {
   // Display questions
   questionCon.style.display = "block";
 
+  displayText.style.display ="none"
   
 
   for (let l = 0; l < question[i].answers.length; l++) {
@@ -228,13 +230,17 @@ function saveData () {
 var resultsButton = document.querySelector("#resultsBtn")
 
 function displayData () {
+  //var displayText = document.querySelector("#dataResults")
   var resultsText = document.querySelector("#results")
+  displayText.style.display = "block"
   //console.log("clicked")
   var storageResults = localStorage.getItem('results')
-  resultsText.innerText = storageResults
+  console.log(storageResults)
+  displayText.innerText = storageResults
   
   //resultsText.appendChild(storageResults)
-  resultsText.style.display = "block"
+  
 }
+
 resultsButton.addEventListener("click", displayData)
 saveButton.addEventListener("click", saveData)
