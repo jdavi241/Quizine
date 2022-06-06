@@ -222,22 +222,19 @@ function saveData () {
   saveButton.innerText = "Save"
   resultsEl.appendChild(saveButton)
   //saveButton.addEventListener("click", saveData)
-  localStorage.setItem('results', resultsEl)
+  localStorage.setItem('results', JSON.stringify(resultsEl.innerText))
    
 }
 var resultsButton = document.querySelector("#resultsBtn")
 
 function displayData () {
-  // var resultsButton = document.querySelector("#resultsBtn")
   var resultsText = document.querySelector("#results")
-  //resultsText.appendChild()
-  resultsText.style.display = "block"
-  resultsText.innerText = storageResults
-  console.log("clicked")
-  //resultsButton.addEventListener("click", displayData)
-
+  //console.log("clicked")
   var storageResults = localStorage.getItem('results')
-
+  resultsText.innerText = storageResults
+  
+  //resultsText.appendChild(storageResults)
+  resultsText.style.display = "block"
 }
 resultsButton.addEventListener("click", displayData)
 saveButton.addEventListener("click", saveData)
