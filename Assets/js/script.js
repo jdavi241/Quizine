@@ -5,8 +5,8 @@ var startMenu = document.querySelector(".startMenu");
 
 
 var question = [{
-  question: "Would you like to eat out or in?",
-  answers: ["out", "in"],
+  question: "How hungry are you?",
+  answers: ["Not very", "Some-what hungry", "starving"],
   id: "location"
 },
 {
@@ -20,8 +20,8 @@ var question = [{
   id: "acidity"
 },
 {
-  question: "Beef, Pork, Chicken, Fish or Veggies",
-  answers: ["Beef", "Pork", "Chicken", "Fish", "Veggies"],
+  question: "Select a protein or press 'Random' to generate a random recipe",
+  answers: ["Beef", "Pork", "Chicken", "Fish", "Vegetables", "Random"],
   id: "protein"
 }]
 
@@ -84,25 +84,22 @@ function answerClick() {
 
 function getAPIs (answer) {
   questionCon.style.display = "none"
-  if (answer.includes("out")) {
-    console.log("worked homie")
-    // var searchFood = answerOpt[3] + " restaurants near me"
+  if (answer.includes("Random")) {
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Host': 'recipify.p.rapidapi.com',
+        'X-RapidAPI-Key': 'fa86238f57msh6dd363b9818db11p18e049jsn90f1e1c91380'
+      }
+    };
     
-    // const optionsTwo = {
-    //   method: 'GET',
-    //   headers: {
-    //     'X-RapidAPI-Host': 'google-search1.p.rapidapi.com',
-    //     'X-RapidAPI-Key': 'fa86238f57msh6dd363b9818db11p18e049jsn90f1e1c91380'
-    //   }
-    // };
-    
-    // fetch(`https://google-search1.p.rapidapi.com/google-search?hl=${searchFood}`, optionsTwo)
-    //   .then(response => response.json())
-    //   .then(response => showResults(response))
-    //   .catch(err => console.error(err));
+    fetch('https://recipify.p.rapidapi.com/today-recipe', options)
+      .then(response => response.json())
+      .then(response => showRandom(response))
+      .catch(err => console.error(err));
       
     
-  } else if (answer.includes("Pork") || answer.includes("Fish") || answer.includes("Beef") || answer.includes("Chicken") || answer.includes("Veggies") || !answer.includes("out")) {  
+  } else if (answer.includes("Pork") || answer.includes("Fish") || answer.includes("Beef") || answer.includes("Chicken") || answer.includes("Vegetables")) {  
 
     const options = {
       method: 'GET',
@@ -147,11 +144,6 @@ function showResults(data) {
   recipeImg.classList = "image is-square"
   resultsText.appendChild(recipeImg)
 
-  // var instructionsDiv = document.createElement("ul")
-  // var instructionsItems = document.createElement("li")
-  //instructionsItems.innerText = data.results[0].instructions[0].display_text
-  // instructionsDiv.appendChild(instructionsItems)
-  // resultsText.appendChild(instructionsDiv)
 
   for (let a = 0; a < data.results[0].instructions.length; a++) {
     const instructionsItems = data.results[0].instructions[a].display_text;
@@ -165,8 +157,51 @@ function showResults(data) {
     resultsText.appendChild(instructionsDiv)
   }
   
-  // Store Data 
-  //storeData();
+}
+
+function showRandom (data) {
+  console.log(data)
+  var resultsText = document.querySelector("#results")
+  resultsText.style.display = "block"
+
+  // Create elements 
+  var heading = document.createElement("p")
+  heading.innerText = data.name
+  resultsText.appendChild(heading)
+
+  var ingredientsHeading = document.createElement("p")
+  ingredientsHeading.innerText = "Ingredients: "
+  resultsText.appendChild(ingredientsHeading)
+
+  for (let b = 0; b < data.ingredients.length; b++) {
+    const ingredientsList = data.ingredients[b];
+    //console.log(ingredientsList)
+    
+    var ingredientsDiv = document.createElement("ul")
+    var ingredientsItem = document.createElement("li")
+
+    ingredientsItem.innerText = ingredientsList
+    ingredientsDiv.appendChild(ingredientsItem)
+    resultsText.appendChild(ingredientsDiv)
+
+  }
+
+  var header = document.createElement("p")
+  header.innerText = "Steps: "
+  resultsText.appendChild(header)
+
+  for (let c = 0; c < data.steps.length; c++) {
+    const StepsList = data.steps[c];
+    var ingredientsDiv = document.createElement("ul")
+    var ingredientsItem = document.createElement("li")
+
+    ingredientsItem.innerText = StepsList
+    ingredientsDiv.appendChild(ingredientsItem)
+    resultsText.appendChild(ingredientsDiv)
+    
+  }
+
+
 }
 
 // var storeData = function () {
