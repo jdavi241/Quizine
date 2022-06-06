@@ -141,7 +141,7 @@ function showResults(data) {
 
   var recipeImg = document.createElement("img")
   recipeImg.src = data.results[0].thumbnail_url
-  recipeImg.classList = "image is-square"
+  recipeImg.classList = "image is-square p-0"
   resultsText.appendChild(recipeImg)
 
 
