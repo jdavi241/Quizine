@@ -133,15 +133,17 @@ function showResults(data) {
   // Create elements 
   var heading = document.createElement("p")
   heading.innerText = data.results[0].name
+  heading.classList = "column"
   resultsText.appendChild(heading)
 
   var header = document.createElement("p")
   header.innerText = data.results[0].description
+  header.classList = "column"
   resultsText.appendChild(header)
 
   var recipeImg = document.createElement("img")
   recipeImg.src = data.results[0].thumbnail_url
-  recipeImg.classList = "image is-square p-0"
+  recipeImg.classList = "is-square column"
   resultsText.appendChild(recipeImg)
 
 
@@ -149,6 +151,7 @@ function showResults(data) {
     const instructionsItems = data.results[0].instructions[a].display_text;
     // console.log(instructionsItems)
     var instructionsDiv = document.createElement("ol")
+    instructionsDiv.classList = "column"
     var instructionsContent = document.createElement("li")
     instructionsContent.classList = "is-mobile"
     instructionsItems.classList = "is-3"
@@ -167,10 +170,12 @@ function showRandom (data) {
   // Create elements 
   var heading = document.createElement("p")
   heading.innerText = data.name
+  heading.classList = "title is-3 column"
   resultsText.appendChild(heading)
 
   var ingredientsHeading = document.createElement("p")
   ingredientsHeading.innerText = "Ingredients: "
+  ingredientsHeading.classList = "subtitle column"
   resultsText.appendChild(ingredientsHeading)
 
   for (let b = 0; b < data.ingredients.length; b++) {
@@ -181,6 +186,7 @@ function showRandom (data) {
     var ingredientsItem = document.createElement("li")
 
     ingredientsItem.innerText = ingredientsList
+    ingredientsDiv.classList = "column"
     ingredientsDiv.appendChild(ingredientsItem)
     resultsText.appendChild(ingredientsDiv)
 
@@ -188,6 +194,7 @@ function showRandom (data) {
 
   var header = document.createElement("p")
   header.innerText = "Steps: "
+  header.classList = "subtitle column"
   resultsText.appendChild(header)
 
   for (let c = 0; c < data.steps.length; c++) {
@@ -196,6 +203,7 @@ function showRandom (data) {
     var ingredientsItem = document.createElement("li")
 
     ingredientsItem.innerText = StepsList
+    ingredientsDiv.classList = "column"
     ingredientsDiv.appendChild(ingredientsItem)
     resultsText.appendChild(ingredientsDiv)
     
