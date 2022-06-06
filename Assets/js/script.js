@@ -159,6 +159,7 @@ function showResults(data) {
     instructionsDiv.appendChild(instructionsContent)
     resultsText.appendChild(instructionsDiv)
   }
+  saveData();
   
 }
 
@@ -209,16 +210,34 @@ function showRandom (data) {
     
   }
 
-
+  saveData();
 }
 
-// var storeData = function () {
-//   var resultsData = answerOpt.value 
-//   //console.log(resultsData)
+var saveButton = document.createElement("button")
 
-//   //localStorage.setItem('results', JSON.stringify(resultsData))
-
-//   //localStorage.getItem('results')
+function saveData () {
+  var resultsEl = document.querySelector("#results")
+  // var saveButton = document.createElement("button")
+  saveButton.classList = "button is-primary"
+  saveButton.innerText = "Save"
+  resultsEl.appendChild(saveButton)
+  //saveButton.addEventListener("click", saveData)
+  localStorage.setItem('results', resultsEl)
    
-// }
+}
+var resultsButton = document.querySelector("#resultsBtn")
 
+function displayData () {
+  // var resultsButton = document.querySelector("#resultsBtn")
+  var resultsText = document.querySelector("#results")
+  //resultsText.appendChild()
+  resultsText.style.display = "block"
+  resultsText.innerText = storageResults
+  console.log("clicked")
+  //resultsButton.addEventListener("click", displayData)
+
+  var storageResults = localStorage.getItem('results')
+
+}
+resultsButton.addEventListener("click", displayData)
+saveButton.addEventListener("click", saveData)
