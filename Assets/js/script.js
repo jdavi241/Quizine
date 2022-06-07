@@ -162,7 +162,7 @@ function showResults(data) {
     resultsText.appendChild(instructionsDiv)
   }
   saveData();
-  
+  createReturnBtn();
 }
 
 function showRandom (data) {
@@ -213,6 +213,8 @@ function showRandom (data) {
   }
 
   saveData();
+  // Create Return Home button
+  createReturnBtn();
 }
 
 var saveButton = document.createElement("button")
@@ -223,24 +225,43 @@ function saveData () {
   saveButton.classList = "button is-primary"
   saveButton.innerText = "Save"
   resultsEl.appendChild(saveButton)
-  //saveButton.addEventListener("click", saveData)
+  
   localStorage.setItem('results', JSON.stringify(resultsEl.innerText))
    
 }
 var resultsButton = document.querySelector("#resultsBtn")
 
 function displayData () {
-  //var displayText = document.querySelector("#dataResults")
   var resultsText = document.querySelector("#results")
+  startMenu.style.display = "none"
   displayText.style.display = "block"
-  //console.log("clicked")
-  var storageResults = localStorage.getItem('results')
-  console.log(storageResults)
+  
+  var storageResults = JSON.parse(localStorage.getItem('results'))
+  //console.log(storageResults)
   displayText.innerText = storageResults
-  
-  //resultsText.appendChild(storageResults)
-  
+  createReturnBtn();
+}
+//var retrunBtn = document.createElement("button")
+
+function returnHome () {
+  var resultsText = document.querySelector("#results")
+  if (startMenu.style.display === "none") {
+    startMenu.style.display = "block"
+    resultsText.style.display = "none"
+    displayText.style.display = "none"
+
+  } 
 }
 
+var retrunBtn = document.createElement("button")
+
+function createReturnBtn () {
+  var resultsText = document.querySelector("#results")
+  retrunBtn.innerText = "Return Home"
+  retrunBtn.classList = "button is-primary"
+  resultsText.appendChild(retrunBtn)
+}
+
+retrunBtn.addEventListener("click", returnHome)
 resultsButton.addEventListener("click", displayData)
 saveButton.addEventListener("click", saveData)
